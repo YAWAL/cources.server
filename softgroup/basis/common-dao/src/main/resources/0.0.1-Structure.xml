@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <changeSet id="1491320616 " author="YAWAL">
+            <createTable tableName="contacts">
+                <column name="id" type="varchar(36)">
+                    <constraints primaryKey="true" nullable="false" />
+                </column>
+                <column name="user_id" type="varchar(36)">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="phone_number" type="varchar(20)">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="name" type="varchar(20)" >
+                </column>
+            </createTable>
+        </changeSet>
+    
+    <changeSet id="1491321325" author="YAWAL">
+        <createTable tableName="conversations">
+            <column name="id" type="varchar(36)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="conversation_name" type="varchar(40)">
+            </column>
+            <column name="admin_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="logo_uri" type="varchar(80)">
+                <constraints nullable="false" />
+            </column>
+            <column name="type" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_exist" type="boolean" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_time" type="long" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="1491322014" author="YAWAL">
+        <createTable tableName="conversation_members">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"  />
+            </column>
+            <column name="conversation_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_message_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="join_date" type="long" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="1491323352" author="YAWAL">
+        <createTable tableName="devices">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="device_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_confirmation_data" type="long" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1491323509" author="YAWAL">
+        <createTable tableName="device_tokens">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="create_time" type="long">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token_type" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="1491324080" author="YAWAL">
+        <createTable tableName="messages">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="conversation_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sender_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message_type" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payload" type="varchar(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_time" type="long" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="server_receive_time" type="long" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1491324895" author="YAWAL">
+        <createTable tableName="message_statuses">
+            <column name="id" type="varchar(36)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+                <column name="message_status" type="varchar(10)">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="status_update_time" type="long" >
+                    <constraints nullable="false"/>
+                </column>
+                <column name="profile_id" type="varchar(36)">
+                    <constraints nullable="false"/>
+                </column>
+            <column name="sender_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="1491325542" author="YAWAL">
+        <createTable tableName="profiles">
+            <column name="id" type="varchar(36)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="phone_number" type="varchar(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="create_date_time" type="long">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_date_time" type="long">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+            </column>
+            <column name="status" type="varchar(128)"/>
+            <column name="avatar_uri" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="1491327595" author="YAWAL">
+        <createTable tableName="profile_settings">
+            <column name="id" type="varchar(36)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="settings_data" type="varchar36)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
