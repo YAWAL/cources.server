@@ -13,6 +13,7 @@
 		<module>frontend</module>
 		<module>services</module>
 		<module>basis</module>
+		<module>token-service</module>
 	</modules>
 
 	<properties>
